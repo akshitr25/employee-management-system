@@ -1,9 +1,13 @@
 package com.ems.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ems.model.Employee;
 import com.ems.repository.EmployeeRepository;
 
 @RestController
@@ -11,8 +15,9 @@ import com.ems.repository.EmployeeRepository;
 public class EmployeeController {
 	@Autowired
 	private EmployeeRepository employeeRepo;
-	public Employee getEmployees()
+	@GetMapping("/employees")
+	public List<Employee> getAllEmployees()
 	{
-		return new Employee();
+		return employeeRepo.findAll();
 	}
 }
